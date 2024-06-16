@@ -7,8 +7,12 @@ set(broadcaster_VERSION_MAJOR 0)
 set(broadcaster_VERSION_MINOR 1)
 
 # C++ standard requirements.
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -v -Wall -stdlib=libc++")		# v:显示详细信息  Wall:启用所有编译器警告
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g")						# debug开启调试, cmake -DCMAKE_BUILD_TYPE=Debug /path/to/source
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+# set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -g")				# release 
 
 message("\n=========== mediasoup-broadcaster-demo Build Configuration ===========\n")
 message(STATUS "LIBWEBRTC_INCLUDE_PATH : " ${LIBWEBRTC_INCLUDE_PATH})
@@ -52,8 +56,8 @@ include(FetchContent)
 message(STATUS "\nFetching mediasoupclient...\n")
 FetchContent_Declare(
   mediasoupclient
-  GIT_REPOSITORY https://github.com/versatica/libmediasoupclient.git
-  GIT_TAG v3
+  GIT_REPOSITORY git@github.com:janreyho/libmediasoupclient.git
+  GIT_TAG m120
 )
 FetchContent_MakeAvailable(mediasoupclient)
 
